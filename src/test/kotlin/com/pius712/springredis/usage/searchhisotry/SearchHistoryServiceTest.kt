@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.TestConstructor
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.Executors
 
 
 @SpringBootTest
@@ -24,12 +26,36 @@ class SearchHistoryServiceTest(
         Assertions.assertThat(searchHistory).containsExactly("fourth", "third", "second", "first")
     }
 
+    /**
+     * 멀티 스레딩 하면 훨씬 빠르다.
+     * 스레드 32개 기준
+     * 100_000개 3초대 걸림.
+     * 300_000개 10초. 초당 30_000개
+     * 스레드 100개로 하면
+     * 300_000개 7초. 초당 42_857개
+     * */
     @Test
     fun `검색이 아무리 많이 되어도 5개만 유지된다`() {
-        for (i in 0..100_000) {
-            searchHistoryService.search(1, getRandomString(10))
+        val executorService = Executors.newFixedThreadPool(100)
+
+        val countDownLatch = CountDownLatch(300_000)
+        // count time
+        val start = System.currentTimeMillis()
+        for (i in 0..300_000) {
+            executorService.submit {
+                try {
+
+                    searchHistoryService.search(1, getRandomString(10))
+                } finally {
+                    countDownLatch.countDown()
+                }
+            }
         }
+        countDownLatch.await()
+
         val searchHistory = searchHistoryService.getSearchHistory(1)
+
+        println("time : ${System.currentTimeMillis() - start} ms")
         Assertions.assertThat(searchHistory.size).isEqualTo(5)
     }
 }
