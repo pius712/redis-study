@@ -1,5 +1,6 @@
 package com.pius712.springredis.usage.randompick
 
+import com.pius712.springredis.domain.usage.randompick.RandomPickService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

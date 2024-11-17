@@ -1,5 +1,6 @@
 package com.pius712.springredis.basic.list
 
+import com.pius712.springredis.domain.basic.list.RedisListOperator
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

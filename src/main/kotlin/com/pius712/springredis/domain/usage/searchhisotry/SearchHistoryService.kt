@@ -1,4 +1,4 @@
-package com.pius712.springredis.usage.searchhisotry
+package com.pius712.springredis.domain.usage.searchhisotry
 
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Service

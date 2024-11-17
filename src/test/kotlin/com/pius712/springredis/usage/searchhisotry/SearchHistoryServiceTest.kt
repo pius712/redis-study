@@ -1,5 +1,6 @@
 package com.pius712.springredis.usage.searchhisotry
 
+import com.pius712.springredis.domain.usage.searchhisotry.SearchHistoryService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

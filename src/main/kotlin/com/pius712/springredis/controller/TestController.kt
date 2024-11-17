@@ -1,5 +1,6 @@
-package com.pius712.springredis
+package com.pius712.springredis.controller
 
+import com.pius712.springredis.TestData
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.web.bind.annotation.GetMapping
@@ -28,21 +29,21 @@ class TestController(
         return test
     }
 
-    @GetMapping
-    fun getTestData2(): TestData {
-
-        val cached = stringRedisTemplate.opsForValue().get("test")
-        if (cached != null) {
-            return cached
-        }
-
-        val test = TestData("name", 32)
-        stringRedisTemplate
-            .opsForValue()
-            .set("test", test);
-        return test
-
-    }
+//    @GetMapping
+//    fun getTestData2(): TestData {
+//
+//        val cached = stringRedisTemplate.opsForValue().get("test")
+//        if (cached != null) {
+//            return cached
+//        }
+//
+//        val test = TestData("name", 32)
+//        stringRedisTemplate
+//            .opsForValue()
+//            .set("test", test);
+//        return test
+//
+//    }
 
 
 }

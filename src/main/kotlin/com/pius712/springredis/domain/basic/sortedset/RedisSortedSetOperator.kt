@@ -1,4 +1,4 @@
-package com.pius712.springredis.basic.sortedset
+package com.pius712.springredis.domain.basic.sortedset
 
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple
@@ -37,6 +37,6 @@ class RedisSortedSetOperator(
     }
 
     fun reverseRange(key: String, start: Long, end: Long): List<String> {
-        return redisTemplate.opsForZSet().reverseRange(key, start, end)?.toList() ?: emptyList()
+        return redisTemplate.opsForZSet().reverseRange(key, start + 1, end + 1)?.toList() ?: emptyList()
     }
 }

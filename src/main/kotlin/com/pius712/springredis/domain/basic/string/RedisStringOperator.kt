@@ -1,4 +1,4 @@
-package com.pius712.springredis.basic.string
+package com.pius712.springredis.domain.basic.string
 
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Service

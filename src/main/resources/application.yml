@@ -8,8 +8,5 @@ spring:
       port: 6379
       host: localhost
 
-#logging:
-#  level:
-#    root: trace
 
 
