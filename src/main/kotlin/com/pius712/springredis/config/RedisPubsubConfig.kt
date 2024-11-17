@@ -30,7 +30,7 @@ class RedisPubsubConfig(
     fun redisMessageListenerContainer(redisConnectionFactory: RedisConnectionFactory): RedisMessageListenerContainer {
         val container = RedisMessageListenerContainer()
         container.setConnectionFactory(redisConnectionFactory)
-        container.addMessageListener(messageListener(), locationTopic())
+//        container.addMessageListener(messageListener(), locationTopic())
         return container
     }
 
